@@ -1,33 +1,47 @@
-![example workflow](https://github.com/rzgry/Express-REST-API-Template/actions/workflows/node.js.yml/badge.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-# Express-REST-API-Template
-
-Simple express boilerplate based off of [express-generator](https://expressjs.com/en/starter/generator.html). Includes [eslint](https://eslint.org) and [prettier](https://prettier.io) for linting/code formatting, [nodemon](https://github.com/remy/nodemon) for automatic server restarting, and [Jest](https://jestjs.io) for testing.
-
-## Getting Started
+# Al-Quran API
+RESTful Quran API with original Arabic text, English Translation, transliteration, Verse Search, Surah Search and Word Search in corpus in plain JSON.
+ 
+## Web Data Extraction
+*Web-Scraped from [al-quran.info](https://al-quran.info) [Python Script used Included in ./quran-scraping]*
+Entire Quran in JSON in ***./quran-scraping/AL-QURAN_WITH_TRANSLATION_AND_TRANSLITERATION.json***
 
 ### Install dependencies
+
+  
 
 ```
 npm install
 ```
 
+  
+
 ### Running in development
+
+  
 
 ```
 npm run dev
 ```
 
+  
+
 ### Running in production
+
+  
 
 ```
 npm start
 ```
 
+  
+
 Runs on localhost:3000 by default but can be configured using the `PORT` environment variable.
 
+  
+
 ### Running tests
+
+ 
 
 ```
 npm test
@@ -35,11 +49,19 @@ npm test
 # Watch repo
 npm run test:watch
 ```
+# API Endpoints
 
-### Linting
-```
-npm run lint
+ - */*
+ Responds with JSON including some properties of the Quran. *(deprecated)*
+ 
+ - */:surah*
+ Possible values: *1-114*
+ Responds with entire Surah/Chapter of the Quran including all verses in the Surah and some additional information.
+ 
+ - */:surah/:verse*
+For a specific Ayah/Verse in a specific Surah along with original Arabic text, translation, transliteration and verse ID
+ - */corpus/:keyword*
+ Looks for a given keyword (English) in *translation_eng* key in the entire Quran and responds with all the verses containing the given keyword in JSON
 
-# fix issues
-npm run lint:fix
-```
+### Contribute
+Due to the nature of scraping from web, the JSON Quran contains unnecessary information and references which are of no use to me. Feel free to edit and remove those :)
