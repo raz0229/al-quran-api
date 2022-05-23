@@ -60,6 +60,13 @@ npm run test:watch
  
  - */:surah/:verse*
 For a specific Ayah/Verse in a specific Surah along with original Arabic text, translation, transliteration and verse ID
+
+ - */:surah/:range*
+ Get a range (collection) of verses within valid limits of chapters and verse numbers. e.g: /1/1-5
+
+ - */:surah/:keyword*
+ Looks for a given keyword (English) in *translation_eng* key in the entire Quran and responds with all the verses containing the given keyword in JSON
+
  - */corpus/:keyword*
  Looks for a given keyword (English) in *translation_eng* key in the entire Quran and responds with all the verses containing the given keyword in JSON
 
