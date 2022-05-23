@@ -50,17 +50,18 @@ router.get('/:chapterId', (req, res) => {
 
 router.get('/:chapterId/:verseId', (req, res) => {
 
+  const chapter = req.params.chapterId
   const range = req.params.verseId.split('-');
   const start = range[0]
   const end = range[1]
 
   let response = {};
-  const content = quran.chapters[req.params.chapterId].verses
+  const content = quran.chapters[chapter]?.verses;
   
-  if (!start || !end )response = content[req.params.verseId]
+  if ((!start || !end) && content ) response = content[req.params.verseId]
   else {
 
-      if (+start > +end || start <= 0) {
+      if (+start > +end || start <= 0 || !content) {
           res.status(400).json({
             "error": `invalid range`
           })
