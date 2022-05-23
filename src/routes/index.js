@@ -47,9 +47,32 @@ router.get('/:chapterId', (req, res) => {
     .json(response);
 });
 
+
 router.get('/:chapterId/:verseId', (req, res) => {
 
-  const response = quran.chapters[req.params.chapterId].verses[req.params.verseId]
+  const range = req.params.verseId.split('-');
+  const start = range[0]
+  const end = range[1]
+
+  let response = {};
+  const content = quran.chapters[req.params.chapterId].verses
+  
+  if (!start || !end )response = content[req.params.verseId]
+  else {
+
+      if (+start > +end || start <= 0) {
+          res.status(400).json({
+            "error": `invalid range`
+          })
+          return;
+      }
+
+      response = Object.keys(content)
+        .slice(start - 1, end)
+        .reduce((acc, k) => ({ ...acc, [k]: content[k] }), {})
+
+  }
+
   if (!response) {
     res.status(404).json({
       "error": `resource not found`

@@ -27,6 +27,27 @@ describe('app', () => {
     })
   })
 
+  describe('GET /1/1-5', () => {
+    it('should respond with a status of 200 to any valid verse range', async () => {
+      const response = await request(app).get('/1/1-5');
+      expect(response.statusCode).toBe(200)
+    })
+  })
+
+  describe('GET /1/0-5', () => {
+    it('should respond with a status of 400 to invalid range', async () => {
+      const response = await request(app).get('/1/0-5');
+      expect(response.statusCode).toBe(400)
+    })
+  })
+
+  describe('GET /1/7-5', () => {
+    it('should respond with a status of 400 to range whose start is greater', async () => {
+      const response = await request(app).get('/1/7-5');
+      expect(response.statusCode).toBe(400)
+    })
+  })
+
   describe('GET /corpus/spider', () => {
     it('should respond with 200 for any searchTerm i.e spider in this case', async () => {
       const response = await request(app).get('/corpus/spider');
