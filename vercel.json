@@ -2,9 +2,9 @@
    "version": 2,
    "name": "music-album",
    "builds": [
-      { "src": "src/bin/www", "use": "@vercel/node" }
+      { "src": "src/bin/www.js", "use": "@vercel/node" }
    ],
    "routes": [
-      { "src": "/(.*)", "dest": "/src/bin/www" }
+      { "src": "/(.*)", "dest": "/src/bin/www.js" }
    ]
 }
