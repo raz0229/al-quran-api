@@ -1,9 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "./src/bin/www",
-      "use": "@now/node"
-    }
-  ]
+   "version": 2,
+   "name": "music-album",
+   "builds": [
+      { "src": "src/bin/www", "use": "@vercel/node" }
+   ],
+   "routes": [
+      { "src": "/(.*)", "dest": "/src/bin/www" }
+   ]
 }
